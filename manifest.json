@@ -2,7 +2,7 @@
   "name": "Scientific Calculator",
   "short_name": "SciCalc",
   "description": "A modern, responsive scientific calculator with beautiful design",
-  "start_url": "/",
+  "start_url": "/calc/",
   "display": "standalone",
   "background_color": "#0f0f1e",
   "theme_color": "#1a1a2e",
@@ -57,6 +57,9 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["utilities", "productivity"],
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
   "screenshots": []
 }

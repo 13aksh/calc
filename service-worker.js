@@ -1,21 +1,21 @@
 // Service Worker for offline support
-const CACHE_NAME = 'scientific-calculator-v1';
+const CACHE_NAME = 'scientific-calculator-v2';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/css/reset.css',
-    '/css/variables.css',
-    '/css/base.css',
-    '/css/components.css',
-    '/css/responsive.css',
-    '/js/main.js',
-    '/js/calculator.js',
-    '/js/display.js',
-    '/js/history.js',
-    '/js/memory.js',
-    '/js/keyboard.js',
-    '/js/theme.js',
-    '/manifest.json'
+    '/calc/',
+    '/calc/index.html',
+    '/calc/css/reset.css',
+    '/calc/css/variables.css',
+    '/calc/css/base.css',
+    '/calc/css/components.css',
+    '/calc/css/responsive.css',
+    '/calc/js/main.js',
+    '/calc/js/calculator.js',
+    '/calc/js/display.js',
+    '/calc/js/history.js',
+    '/calc/js/memory.js',
+    '/calc/js/keyboard.js',
+    '/calc/js/theme.js',
+    '/calc/manifest.json'
 ];
 
 // Install event - cache files

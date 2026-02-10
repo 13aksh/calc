@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="A modern, responsive scientific calculator with a beautiful design">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <title>Scientific Calculator</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SciCalc">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator-container">
+        <!-- Settings Bar -->
+        <div class="settings-bar">
+            <div class="mode-toggle">
+                <button id="angleMode" class="mode-btn active" aria-label="Angle mode">DEG</button>
+            </div>
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+                    <span class="theme-icon">☀️</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Calculator -->
+        <main class="calculator">
+            <!-- Display Section -->
+            <div class="display-section">
+                <div class="memory-indicator" id="memoryIndicator">M</div>
+                <div class="expression" id="expression" aria-label="Expression"></div>
+                <div class="result" id="result" aria-label="Result">0</div>
+            </div>
+
+            <!-- Button Grid -->
+            <div class="button-grid" id="buttonGrid">
+                <!-- Row 1 - Secondary Functions & Memory -->
+                <button class="btn btn-secondary" data-action="2nd">2nd</button>
+                <button class="btn btn-function" data-action="(">(</button>
+                <button class="btn btn-function" data-action=")">)</button>
+                <button class="btn btn-memory" data-action="mc">MC</button>
+                <button class="btn btn-memory" data-action="mr">MR</button>
+                <button class="btn btn-memory" data-action="m+">M+</button>
+                <button class="btn btn-memory" data-action="m-">M-</button>
+                
+                <!-- Row 2 - Scientific Functions -->
+                <button class="btn btn-function" data-action="sin" data-secondary="asin">sin</button>
+                <button class="btn btn-function" data-action="cos" data-secondary="acos">cos</button>
+                <button class="btn btn-function" data-action="tan" data-secondary="atan">tan</button>
+                <button class="btn btn-function" data-action="ln" data-secondary="e^x">ln</button>
+                <button class="btn btn-function" data-action="log" data-secondary="10^x">log</button>
+                <button class="btn btn-operator" data-action="backspace">⌫</button>
+                <button class="btn btn-clear" data-action="clear">C</button>
+                
+                <!-- Row 3 - More Functions -->
+                <button class="btn btn-function" data-action="sqrt" data-secondary="cbrt">√</button>
+                <button class="btn btn-function" data-action="x^2" data-secondary="x^3">x²</button>
+                <button class="btn btn-function" data-action="x^y" data-secondary="x^(1/y)">x^y</button>
+                <button class="btn btn-number" data-value="7">7</button>
+                <button class="btn btn-number" data-value="8">8</button>
+                <button class="btn btn-number" data-value="9">9</button>
+                <button class="btn btn-operator" data-action="/">&divide;</button>
+                
+                <!-- Row 4 -->
+                <button class="btn btn-function" data-action="1/x" data-secondary="abs">1/x</button>
+                <button class="btn btn-function" data-action="!" data-secondary="exp">x!</button>
+                <button class="btn btn-function" data-action="pi" data-secondary="e">π</button>
+                <button class="btn btn-number" data-value="4">4</button>
+                <button class="btn btn-number" data-value="5">5</button>
+                <button class="btn btn-number" data-value="6">6</button>
+                <button class="btn btn-operator" data-action="*">&times;</button>
+                
+                <!-- Row 5 -->
+                <button class="btn btn-function" data-action="%" data-secondary="mod">%</button>
+                <button class="btn btn-function" data-action="EE" data-secondary="rand">EE</button>
+                <button class="btn btn-function" data-action="+/-">±</button>
+                <button class="btn btn-number" data-value="1">1</button>
+                <button class="btn btn-number" data-value="2">2</button>
+                <button class="btn btn-number" data-value="3">3</button>
+                <button class="btn btn-operator" data-action="-">&minus;</button>
+                
+                <!-- Row 6 -->
+                <button class="btn btn-function" data-action="history">📋</button>
+                <button class="btn btn-number span-2" data-value="0">0</button>
+                <button class="btn btn-number" data-value=".">.</button>
+                <button class="btn btn-operator" data-action="+">+</button>
+                <button class="btn btn-equals" data-action="=">=</button>
+            </div>
+        </main>
+
+        <!-- History Panel -->
+        <aside class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h3>History</h3>
+                <button class="btn-close" id="closeHistory" aria-label="Close history">&times;</button>
+            </div>
+            <div class="history-content" id="historyContent">
+                <p class="history-empty">No calculations yet</p>
+            </div>
+            <button class="btn-clear-history" id="clearHistory">Clear History</button>
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/calculator.js" type="module"></script>
+    <script src="js/display.js" type="module"></script>
+    <script src="js/history.js" type="module"></script>
+    <script src="js/memory.js" type="module"></script>
+    <script src="js/keyboard.js" type="module"></script>
+    <script src="js/theme.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.error('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>

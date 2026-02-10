@@ -1,0 +1,286 @@
+/* Button Grid */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-sm);
+}
+
+/* Button Base Styles */
+.btn {
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ripple effect on click */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Button Variants */
+.btn-number {
+    background: var(--btn-number-bg);
+    color: var(--text-primary);
+}
+
+.btn-number:hover {
+    background: var(--btn-number-hover);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-operator {
+    background: var(--btn-operator-bg);
+    color: var(--accent-primary);
+    font-weight: 700;
+}
+
+.btn-operator:hover {
+    background: var(--btn-operator-hover);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.btn-function {
+    background: var(--btn-function-bg);
+    color: var(--accent-secondary);
+    font-size: var(--font-size-base);
+}
+
+.btn-function:hover {
+    background: var(--btn-function-hover);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-equals {
+    background: var(--btn-equals-bg);
+    color: white;
+    font-size: var(--font-size-2xl);
+    grid-row: span 2;
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-equals:hover {
+    box-shadow: var(--shadow-glow), var(--shadow-md);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.btn-clear {
+    background: var(--btn-clear-bg);
+    color: #ef4444;
+}
+
+.btn-clear:hover {
+    background: var(--btn-clear-hover);
+    transform: translateY(-2px);
+}
+
+.btn-memory {
+    background: var(--btn-function-bg);
+    color: var(--accent-tertiary);
+    font-size: var(--font-size-sm);
+}
+
+.btn-memory:hover {
+    background: var(--btn-function-hover);
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, rgba(102, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, rgba(102, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+}
+
+.btn-secondary.active {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: var(--shadow-glow);
+}
+
+/* Span Columns */
+.span-2 {
+    grid-column: span 2;
+}
+
+.span-3 {
+    grid-column: span 3;
+}
+
+/* History Panel */
+.history-panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    transition: right var(--transition-slow);
+    z-index: var(--z-modal);
+    overflow-y: auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-panel.active {
+    right: 0;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-header h3 {
+    font-size: var(--font-size-2xl);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.btn-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--btn-clear-bg);
+    color: #ef4444;
+    font-size: var(--font-size-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.btn-close:hover {
+    background: var(--btn-clear-hover);
+    transform: rotate(90deg);
+}
+
+.history-content {
+    margin-bottom: var(--spacing-xl);
+}
+
+.history-empty {
+    text-align: center;
+    color: var(--text-tertiary);
+    padding: var(--spacing-2xl);
+    font-style: italic;
+}
+
+.history-item {
+    padding: var(--spacing-lg);
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-glass);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.history-item:hover {
+    background: var(--btn-number-hover);
+    border-color: var(--accent-primary);
+    transform: translateX(-4px);
+}
+
+.history-expression {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.history-result {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.btn-clear-history {
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: var(--btn-clear-bg);
+    color: #ef4444;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-clear-history:hover {
+    background: var(--btn-clear-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Loading State */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
